@@ -1,0 +1,20 @@
+Package: loglai
+Version: 0.2.0
+Date: 2023-07-14
+Title: Lognormal State Space Carbon Modeling
+Description: Various functions modelling different sources of carbon output from forests using Lognormal state space models
+Author: Turner Haugen <turner.haugen712@gmail.com>
+Maintainer: Turner Haugen <turner.haugen712@gmail.com>
+License: GPL-3
+Depends:
+	R (>= 4.0)
+Imports:
+	pomp,
+	lamW
+Suggests:
+	knitr,
+	rmarkdown
+VignetteBuilder: knitr
+LazyData: true
+Encoding: UTF-8
+RoxygenNote: 7.2.3
