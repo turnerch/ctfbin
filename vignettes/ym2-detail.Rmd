@@ -1,0 +1,120 @@
+---
+title: "ym2-detail"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ym2-detail}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(bozesim)
+```
+
+This vignette shows the thought process behind making synthetic_ym2() into an efficient package command, and goes into detail about how to use the individual functions needed for synthetic_ym2().
+
+# synthetic_ym2() components
+
+`synthetic_ym2()` requires 2 different components to run, those being a particle filter and specifically formatted parameters, under the arguments `filter` and `pars`. Running the command on its own will return with an error!
+
+Now the amount of work needed to make your own particle filter and parameters that fit within the requirements of `synthetic_ym2()` is quite daunting! Instead of making your own, it is far easier to use the particle filter and parameters supplied in this package.
+
+# `synthetic_ym2_pf()`: The particle filter
+
+The `synthetic_ym2_pf()` command will generate a particle filter for use in `synthetic_ym2()`. It does not require any arguments, so creating one is simple.
+
+```{r}
+filter.example <- synthetic_ym2_pf()
+```
+
+If you want variation in your particle filter, `synthetic_ym2_pf()` has an argument that will let you change the randomization seed. An evolution function is contained inside the particle filter which does NOT have a static output, so the default particle filter has a seed of `3141` to keep it consistent as well.
+
+```{r}
+filter.example2 <- synthetic_ym2_pf(seed = 10000)
+```
+
+`filter.example` and `filter.example2` will provide different results when used later.
+
+# Csnippet functions contained inside of `synthetic_ym2_pf()`
+
+There are some functions present inside of `synthetic_ym2_pf()` that are probably not practical for normal use.
+
+`dmeas_mm()` and `synthetic_ym2_evo()` are both functions that create a singular Csnippet. The functions have no arguments, so they cannot be changed unless you modify them after using the command.
+
+If you are curious, `dmeas_mm()` creates a measurement component for the particle filter, `while synthetic_ym2_evo()` defines the evolution function responsible for the particle filter's potential randomness.
+
+# `GPP()`: Calculating GPP for the DALEC2 model
+
+The `GPP()` function is more useful in general use than the prior 2 Csnippet functions, but is still situational, mainly used for the creation of the particle filter `ym2_pf()`. It calculates gross primary productivity based on the Aggregated Canopy Model, using a wide array of required arguments.
+
+```{r}
+GPP(lai = 2.641, c_eff = 20, maxt = 12.83247, mint = 6.867838, Ca = 400.95, lat = 46.23, yearday = 268, rad = 11.26568)
+```
+
+More details about these parameters can be found in the `GPP()` function's documentation.
+
+# `synthetic_ym2_pars()`: Define default parameters for `synthetic_ym2()`
+
+Similar to the particle filter, the information required to define your own parameters for the DALEC2 model calculations is rather difficult. `synthetic_ym2_pars()` defines default parameters fairly easily, but does not have much to tweak unlike `synthetic_ym2_pf()`'s seed argument.
+
+```{r}
+params.scaled <- synthetic_ym2_pars()
+params.unscaled <- synthetic_ym2_pars(scaled = FALSE)
+```
+
+The `scaled` argument is a logical argument that will determine if the parameters calculated will be properly scaled to a [0,1]\^10 hypercube.
+
+# `synthetic_ym2`: Generate a synthetic trajectory and marginal log-likelihood from the DALEC2 model
+
+The simplest way of running `synthetic_ym2()` will be using the default particle filter and parameters.
+
+```{r}
+filter.example <- synthetic_ym2_pf()
+params.scaled <- synthetic_ym2_pars()
+
+dalec <- synthetic_ym2(filter = filter.example, pars = params.scaled)
+```
+
+As long as we provide a proper particle filter, you can provide any filter you want.
+
+```{r}
+filter.example2 <- synthetic_ym2_pf(seed = 10000)
+
+dalec2 <- synthetic_ym2(filter = filter.example2, pars = params.scaled)
+```
+
+If the parameters provided are not scaled, you will have to specify that.
+
+```{r}
+params.unscaled <- synthetic_ym2_pars(scaled = FALSE)
+
+dalec3 <- synthetic_ym2(filter = filter.example, pars = params.unscaled, scaled = FALSE)
+```
+
+Since the `scaled` argument is `TRUE` by default, a warning will display whenever completely default arguments are used to ensure the user knows what they're getting into. If you want to disable that, set the `verbose` argument to false.
+
+```{r}
+dalec <- synthetic_ym2(filter = filter.example, pars = params.scaled, verbose = FALSE)
+```
+
+You can also specify the amount of particles to use in the particle filter by adjusting the `n.part` argument. It will be set to 200 by default.
+
+```{r}
+dalec4 <- synthetic_ym2(filter = filter.example, pars = params.scaled, n.part = 300, verbose = FALSE)
+```
+
+# `synthetic_ym2()` output
+
+The output of `synthetic_ym2()` will create a list containing the marginal log-likelihood and the trajectory. You can extract these from the objective function with the following keywords:
+
+```{r}
+dalec$logLik       # marginal log-likelihood
+plot(dalec$traj)   # trajectory
+```

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>ym2-detail</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">ym2-detail</h1>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(bozesim)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;bozesim&#39;</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:loglai&#39;:</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co">#&gt;     GPP, dmeas_D2, dmeas_mm, synthetic_ym2, synthetic_ym2_evo,</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co">#&gt;     synthetic_ym2_pars, synthetic_ym2_pf, ym2, ym2_pf</span></span></code></pre></div>
+<p>This vignette shows the thought process behind making synthetic_ym2()
+into an efficient package command, and goes into detail about how to use
+the individual functions needed for synthetic_ym2().</p>
+<div id="synthetic_ym2-components" class="section level1">
+<h1>synthetic_ym2() components</h1>
+<p><code>synthetic_ym2()</code> requires 2 different components to run,
+those being a particle filter and specifically formatted parameters,
+under the arguments <code>filter</code> and <code>pars</code>. Running
+the command on its own will return with an error!</p>
+<p>Now the amount of work needed to make your own particle filter and
+parameters that fit within the requirements of
+<code>synthetic_ym2()</code> is quite daunting! Instead of making your
+own, it is far easier to use the particle filter and parameters supplied
+in this package.</p>
+</div>
+<div id="synthetic_ym2_pf-the-particle-filter" class="section level1">
+<h1><code>synthetic_ym2_pf()</code>: The particle filter</h1>
+<p>The <code>synthetic_ym2_pf()</code> command will generate a particle
+filter for use in <code>synthetic_ym2()</code>. It does not require any
+arguments, so creating one is simple.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>filter.example <span class="ot">&lt;-</span> <span class="fu">synthetic_ym2_pf</span>()</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">: The provided object &#39;tcovar&#39; is available for use by POMP basic components.</span></span></code></pre></div>
+<p>If you want variation in your particle filter,
+<code>synthetic_ym2_pf()</code> has an argument that will let you change
+the randomization seed. An evolution function is contained inside the
+particle filter which does NOT have a static output, so the default
+particle filter has a seed of <code>3141</code> to keep it consistent as
+well.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>filter.example2 <span class="ot">&lt;-</span> <span class="fu">synthetic_ym2_pf</span>(<span class="at">seed =</span> <span class="dv">10000</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">: The provided object &#39;tcovar&#39; is available for use by POMP basic components.</span></span></code></pre></div>
+<p><code>filter.example</code> and <code>filter.example2</code> will
+provide different results when used later.</p>
+</div>
+<div id="csnippet-functions-contained-inside-of-synthetic_ym2_pf" class="section level1">
+<h1>Csnippet functions contained inside of
+<code>synthetic_ym2_pf()</code></h1>
+<p>There are some functions present inside of
+<code>synthetic_ym2_pf()</code> that are probably not practical for
+normal use.</p>
+<p><code>dmeas_mm()</code> and <code>synthetic_ym2_evo()</code> are both
+functions that create a singular Csnippet. The functions have no
+arguments, so they cannot be changed unless you modify them after using
+the command.</p>
+<p>If you are curious, <code>dmeas_mm()</code> creates a measurement
+component for the particle filter,
+<code>while synthetic_ym2_evo()</code> defines the evolution function
+responsible for the particle filter’s potential randomness.</p>
+</div>
+<div id="gpp-calculating-gpp-for-the-dalec2-model" class="section level1">
+<h1><code>GPP()</code>: Calculating GPP for the DALEC2 model</h1>
+<p>The <code>GPP()</code> function is more useful in general use than
+the prior 2 Csnippet functions, but is still situational, mainly used
+for the creation of the particle filter <code>ym2_pf()</code>. It
+calculates gross primary productivity based on the Aggregated Canopy
+Model, using a wide array of required arguments.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">GPP</span>(<span class="at">lai =</span> <span class="fl">2.641</span>, <span class="at">c_eff =</span> <span class="dv">20</span>, <span class="at">maxt =</span> <span class="fl">12.83247</span>, <span class="at">mint =</span> <span class="fl">6.867838</span>, <span class="at">Ca =</span> <span class="fl">400.95</span>, <span class="at">lat =</span> <span class="fl">46.23</span>, <span class="at">yearday =</span> <span class="dv">268</span>, <span class="at">rad =</span> <span class="fl">11.26568</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">#&gt; [1] 5.343396</span></span></code></pre></div>
+<p>More details about these parameters can be found in the
+<code>GPP()</code> function’s documentation.</p>
+</div>
+<div id="synthetic_ym2_pars-define-default-parameters-for-synthetic_ym2" class="section level1">
+<h1><code>synthetic_ym2_pars()</code>: Define default parameters for
+<code>synthetic_ym2()</code></h1>
+<p>Similar to the particle filter, the information required to define
+your own parameters for the DALEC2 model calculations is rather
+difficult. <code>synthetic_ym2_pars()</code> defines default parameters
+fairly easily, but does not have much to tweak unlike
+<code>synthetic_ym2_pf()</code>’s seed argument.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>params.scaled <span class="ot">&lt;-</span> <span class="fu">synthetic_ym2_pars</span>()</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>params.unscaled <span class="ot">&lt;-</span> <span class="fu">synthetic_ym2_pars</span>(<span class="at">scaled =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>The <code>scaled</code> argument is a logical argument that will
+determine if the parameters calculated will be properly scaled to a
+[0,1]^10 hypercube.</p>
+</div>
+<div id="synthetic_ym2-generate-a-synthetic-trajectory-and-marginal-log-likelihood-from-the-dalec2-model" class="section level1">
+<h1><code>synthetic_ym2</code>: Generate a synthetic trajectory and
+marginal log-likelihood from the DALEC2 model</h1>
+<p>The simplest way of running <code>synthetic_ym2()</code> will be
+using the default particle filter and parameters.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>filter.example <span class="ot">&lt;-</span> <span class="fu">synthetic_ym2_pf</span>()</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">: The provided object &#39;tcovar&#39; is available for use by POMP basic components.</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>params.scaled <span class="ot">&lt;-</span> <span class="fu">synthetic_ym2_pars</span>()</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>dalec <span class="ot">&lt;-</span> <span class="fu">synthetic_ym2</span>(<span class="at">filter =</span> filter.example, <span class="at">pars =</span> params.scaled)</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Parameters currently being passed as scaled values&quot;</span></span></code></pre></div>
+<p>As long as we provide a proper particle filter, you can provide any
+filter you want.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>filter.example2 <span class="ot">&lt;-</span> <span class="fu">synthetic_ym2_pf</span>(<span class="at">seed =</span> <span class="dv">10000</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">: The provided object &#39;tcovar&#39; is available for use by POMP basic components.</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>dalec2 <span class="ot">&lt;-</span> <span class="fu">synthetic_ym2</span>(<span class="at">filter =</span> filter.example2, <span class="at">pars =</span> params.scaled)</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Parameters currently being passed as scaled values&quot;</span></span></code></pre></div>
+<p>If the parameters provided are not scaled, you will have to specify
+that.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>params.unscaled <span class="ot">&lt;-</span> <span class="fu">synthetic_ym2_pars</span>(<span class="at">scaled =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>dalec3 <span class="ot">&lt;-</span> <span class="fu">synthetic_ym2</span>(<span class="at">filter =</span> filter.example, <span class="at">pars =</span> params.unscaled, <span class="at">scaled =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>Since the <code>scaled</code> argument is <code>TRUE</code> by
+default, a warning will display whenever completely default arguments
+are used to ensure the user knows what they’re getting into. If you want
+to disable that, set the <code>verbose</code> argument to false.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>dalec <span class="ot">&lt;-</span> <span class="fu">synthetic_ym2</span>(<span class="at">filter =</span> filter.example, <span class="at">pars =</span> params.scaled, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>You can also specify the amount of particles to use in the particle
+filter by adjusting the <code>n.part</code> argument. It will be set to
+200 by default.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>dalec4 <span class="ot">&lt;-</span> <span class="fu">synthetic_ym2</span>(<span class="at">filter =</span> filter.example, <span class="at">pars =</span> params.scaled, <span class="at">n.part =</span> <span class="dv">300</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+</div>
+<div id="synthetic_ym2-output" class="section level1">
+<h1><code>synthetic_ym2()</code> output</h1>
+<p>The output of <code>synthetic_ym2()</code> will create a list
+containing the marginal log-likelihood and the trajectory. You can
+extract these from the objective function with the following
+keywords:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>dalec<span class="sc">$</span>logLik       <span class="co"># marginal log-likelihood</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="co">#&gt; [1] 749516.5</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="fu">plot</span>(dalec<span class="sc">$</span>traj)   <span class="co"># trajectory</span></span></code></pre></div>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASAAAAEgCAMAAAAjXV6yAAAAV1BMVEUAAAAAADoAAGYAOpAAZrY6AAA6ADo6AGY6Ojo6kNtmAABmADpmZmZmtrZmtv+QOgCQkGaQ2/+2ZgC2/7a2///bkDrb/9vb////tmb/25D//7b//9v///+6LNXiAAAACXBIWXMAAA7DAAAOwwHHb6hkAAALN0lEQVR4nO2djXajNhCFtbtJ22TbpOuuu07C+z9nLQQ2EjO6IyEMTu/taY4XRoP0efRrAa6jsnJbZ2DvIiAgAgIiICACAiIgIAICIiAgAgIiICACAiIgIAICIiAgAgIiICACAiIgIAICIiAgAgIiICACAiIgIAICIiAgAgIiICACAiIgIAICIiAgAgIiICACAiIgIAICIiAgAgIiICACAiIgIAICIiAgAgIiICACAiIgIAICIiAgAgIiICACAiIgIAICIiAgAgIiICACAiIgIAICIiAgAgIiICACAiIgIAICIiAgAgIiICACAiIgIAICIiAgAgIiICACAmoMyN2NtgK0NL095wsv1NzwJu48n9sQuk9A7naE7hJQaBtuU8nuEVBx+7lEdwiovINZovsDNLQ/nxRQg2+/ZoyyQHcYQQSEkhIQSMpGGiT9DIA+XkMRvv5s4i5Kee3E7reKHd1T+HAaPyxyF6f8BG3Qx+sFy/Hbr8XukpSfAND788v48aRUsv83oJtF0A0IrdUGDSEE2qCaIn4KQOdKFgqgxM/gzhX7TddqCxNXaMtxkKtxTEA44U0JrdSL+ZbnhAaKNQungcl+AZ2LPjYvXkoL3APq+69Jhy+4q2iDXKqy5JEjm53ZoXDsqASIBzSgyXXzlREUsCwEZE67CNBJKb0H9PbYA0oGitE3XwHINQJkT1wBaKxjavtijqDyIk7xLgBUUEErAB2+/To+jBEiKiB86MbmWnG3MSBbM1QOyJfZ1y0tNkYr9+WHPpBuAWjBwv2lkhpMzT7HD77uvP3+s/+/XpVFbBNBUUtoyKjN6fjBz0Tfv/9oAai8jMNX39Wlvly7gFBFG+Q798NTvoodz9d+GY01d3WALinqAbl1AXWHB9/E6J3YGcu5/Xl/9q10DlBFEWeAaqZAroTQiutBH6++KUeAivYguBjQ+KdMzpUQqmuDgMYJhh8QNI2gKEFtFXNFhOp6MaALw8NDU0DuLgCpy8wTjVj0pqqqnRUAVdSx9SNocJxtpYc114/XhoDSIlXuMxud2ABvuWBW2s6mX3ldBE1nuutE0HmQ6GWoadDdUkAlqWde1gakNb8l7uqq2NVHTRW7OjHVsVJAh2towt4eu9sakGEyWB9BVUpqfhGgeaNRQjd1082By+Zmv6UZsbgriYF5q1oWf4kbq4NiQAc/R73MRas1aaSNC1dSAF1cFFy4MIBLAflpaHc6/8mtKNrdOWsYOMFy6K8LLxwDgl9PIaB+iv7x6ufph+yKos2dfWFGMnTXxaGCC7trzzW2RIaMGhz3fyedmFvUj10AGYd7CqDiRmhIEVWxthH0FGpYqwiazx/kDIuRVg4odrMCoO7w9WeoYfp6fIm7BJCeYxVQWR1L3KwAyFey0I8t4jNvg1wn16MuMYwPjn/Ml10fUCNNa5QgwV4CVDqUTi/gMOKNAYlwBEJO/I2oOIJmXwBGXAPIN88Lm6AcICmIxgBKnOAaItknk5XmERS6r/CjRbUgoDhncqzUAkJ+hYwanI8fxjXpFutB2QiaZk1GUdoGSYAQ4nJA44p8i/WgHCBnAFTYBt0G0LDe/PbYZBxUAEioYi0iCEw2ahrpt8ezyy8LVoU6G6B05UeKIPD9J+ZaZDYGtEBJ2QGeaP4hASpbMhOc7A5Q7A7EzzXnTqkJsHjJNefWqwB6fz7PNg4NxkFzGhogJVTiOIPXFGCsAeg8mT9++6VuritwNwMRwmROSGtsylppERCqpXXd/DGzb2MwCpnJbyQXAIWTc0B6BBVUscyl9ERG5/FA0QPKDRRtdxyqgLTGfO6lBJDLtEEtAY0RlFkws90vFlWm9HQCSKlKsHip7bylHw7rySy+Y8PQBh0zP2vY7jh0GUJxbI1lm3spBaR+FXoyi+/EsN/fkRsoWiNIr2PxGbFyTM1MBVAWUlYAhGW743DCYAYoiq1QBaQcXNPD/CkktgFkveNwUsvm56f4tEIIQaiVNg9ILd6mI+nwKZ/xAkCJZFPNA86oqUTTm8VaLHd0uRgHJZZMMvaak20iqODRFJkMYkAFhMBQQSvJWo20/dEUmcF+VNjFgBQn7QHh+8WKHixgjw9sgQBJTnLeuypAlvvFtIGikPkbAVJ9TIwlg5q5GLxfrOzRFG74TzQDfNCS28xOd6EwrJusovvFrI+mQHlP5xyZswBRiRMto3lFk1V4v5htoAjz3omVUjgHCRVRVjKa19XQcr9YgTvQj2QARWWaWs1LW8QnMqvp5vH9YkXuQEerly0ukhgwKbK8E4nT9lMNPBKxAYr7IOGc6CTHx2lTZFiiBhIAgRDSjsunk3N1fMJKQlGJbHMxg9XagOSim4wWAfIKXfcpv2KGWigJUL6Z1o7bTotGkE8VoLBFUR8CRkbY3TSjsqWtdNmkio0EcPbvfDmEEtm2v5zATnwRUL6UymETXAviZERQDWicRzTZBjzLqWBpA2QJofzZ2ai7tpsPwXFctr1DnGmLBZVPXI/mAGXbqZmL9IyQUVuJ+k5qUfzMrmsoxhzQsPycAxRR0M4IHq7/2sM4qMu1KBlAzgAIOpgAkmtpZYmWytZgxicE8/SzdCUAKPmMMmouUZ2U3HYCIbFPSa3Tz/ZLileRkpuLZjWsdScTkgHFR/KEDHzuA5Bl3J+aSv9S/eYO6i52BMgwc0wM03TKpT4NoP64gdAMiA1Qbn4sfAsgo+YSVcrQK2uAcEgpDoVjmtXkaotLVKesuxkYGZCUIOtsdki/5OX0LgHNZggiINVeCY0sIJXQPgF1SVBMyyMUztADTpNIfFRCuwXUDVm+fopYwcl9hpDsQVlh2zOgTiiSwsdIKDY0uNg5oIm5EgxZEzFRxoO8wrhSiRq7w3yyhJTqg3wUZXRbQJYVaJ2QUnsyTioyWlai5i8/MhVONp5Nei0uyjNaVKIVXn5UUzgleZGLVQCt8uqaRXwKQ3CarrlhV7jDzKxFfMQphylZc8NutZcfLeIDV0W0VM0NvYp2mO1bK/VieIfZ3WgdQGs4LTFezfHaXpY4JaCGxgS0leO1vSxxSkANjQloK8dre1nilIAaGn8WQJ9JBAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBA7QGd8BNzry+NvhgbUmGFhyK09d4ckL/pNXvj61lvv/1IjC2poN6f+x/E23pvDSj8PH3I39o6/rJ/MTalQjoN23Laem8NKDxeBzzW/PiQGJtSAZ3cU0DT1ntzQH18gwfjH/5w/RuELsamVFjBQVvvrQGFqp6v8O/P/rf9w9PV2JLKcnHPoLH3LQANll9/rgKosfdNqliwfHxZp4q19b5JIx0sf/vRtJHuYkCtvG/RzYcMn/wbu1p28wOgxt43GSj2eT08tR4ojr1YU+/tpxpHw7DevzLwJTK2pIIaqlhT75ysAhEQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEB7Q/QbJfB8k0NS0RAQAQEtEtA789/PYcdLH7fyt8e0DHsXPXbxPzrKm+nnQI6M/HviDmceZzc8I+3x6d+s9iylwyWaqeAnsI2zH433WE40O+POn395/tNa9xOAb30DyUMO8YuG3l7Xge3dCdjmXYN6HgBNDyZ7QW/wKu1dg0oiSCvj9c/l24WLtOuAQ0bnIcDvY7f/n29ZSe2b0B953XpxUJr/bJ8Q36R9g0oHgf5Vwmfu3j4osWm2h+gnYmAgAgIiICACAiIgIAICIiAgAgIiICACAiIgIAICIiAgAgIiICACAiIgIAICIiAgAgIiICACAiIgID+AyLHoBn5XMZhAAAAAElFTkSuQmCC" /><!-- --></p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
