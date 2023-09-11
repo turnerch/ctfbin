@@ -23,7 +23,7 @@ synthetic_ym2_pars <- function(scaled = TRUE) {
   if(!is.logical(scaled)) stop("scaled parameter must be logical!")
   
   ## use unde drivers
-  drivers_unde <- bozesim::drivers_unde
+  drivers_unde <- loglai::drivers_unde
   
   ## take subset
   synth_drivers <- drivers_unde[1074:1954,]

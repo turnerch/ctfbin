@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(bozesim)
+library(loglai)
 ```
 
 This vignette shows the thought process behind making synthetic_ym2() into an efficient package command, and goes into detail about how to use the individual functions needed for synthetic_ym2().
