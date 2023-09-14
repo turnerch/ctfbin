@@ -1,5 +1,5 @@
 Package: loglai
-Version: 0.2.0
+Version: 0.2.1
 Date: 2023-07-14
 Title: Lognormal State Space Carbon Modeling
 Description: Various functions modelling different sources of carbon output from forests using Lognormal state space models
