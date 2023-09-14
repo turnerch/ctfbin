@@ -118,3 +118,22 @@ The output of `synthetic_ym2()` will create a list containing the marginal log-l
 dalec$logLik       # marginal log-likelihood
 plot(dalec$traj)   # trajectory
 ```
+# carrying over to `ym2()`
+
+Using `ym2()` is very similar, where we will be defining a particle filter and parameters for the ym2() function.  `ym2()` has its own particle filter `ym2_pf()`.  We don't know what the true parameters are for the non-synthetic data, so using the synthetic parameters, `synthetic_ym2()` will be the best bet.
+
+```{r}
+true.filter <- ym2_pf()
+synthetic.pars <- synthetic_ym2_pars()
+
+reg.ym2 <- ym2(filter = true.filter, pars = synthetic.pars)
+```
+
+Also just like `synthetic_ym2()`, you can change the number of particles present by changing the `n.part` argument.  It will be 200 by default.
+
+The output of `ym2()` can similarly be used to get its marginal log-likelihood and trajectory.
+
+```{r}
+reg.ym2$logLik       # marginal log-likelihood
+plot(reg.ym2$traj)   # trajectory
+```
