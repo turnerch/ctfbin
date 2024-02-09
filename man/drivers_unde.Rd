@@ -23,7 +23,6 @@ rad <- drivers_unde$rad
 \references{
 NEON; National Ecological Observatory Network, 2020; National Ecological Observatory Network (NEON), 2022b,a
 (\href{https://data.neonscience.org/}{NEON})
-
 NEON (National Ecological Observatory Network). Shortwave radiation (primary pyranometer) (DP1.00022.001), RELEASE-2023.
 (\href{https://data.neonscience.org/data-products/DP1.00022.001}{NEON Shortwave rad})
 }
