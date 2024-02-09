@@ -120,11 +120,11 @@ plot(dalec$traj)   # trajectory
 ```
 # carrying over to `ym2()`
 
-Using `ym2()` is very similar, where we will be defining a particle filter and parameters for the ym2() function.  `ym2()` has its own particle filter `ym2_pf()`.  We don't know what the true parameters are for the non-synthetic data, so using the synthetic parameters, `synthetic_ym2()` will be the best bet.
+Using `ym2()` is very similar, where we will be defining a particle filter and parameters for the ym2() function.  `ym2()` has its own particle filter `ym2_pf()`.  We don't know what the true parameters are for the non-synthetic data, so `ym2_pars()` will still produce synthetic parameters, but will be the best bet.
 
 ```{r}
 true.filter <- ym2_pf()
-synthetic.pars <- synthetic_ym2_pars()
+synthetic.pars <- ym2_pars()
 
 reg.ym2 <- ym2(filter = true.filter, pars = synthetic.pars)
 ```
